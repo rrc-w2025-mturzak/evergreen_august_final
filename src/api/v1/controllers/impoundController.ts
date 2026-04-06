@@ -46,3 +46,26 @@ export const getAllImpound = async (req: Request, res: Response) => {
         res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: "Internal Server Error"})
     }
 }
+
+export const updateImpoundByIdAsync = async (req: Request, res: Response) => {
+    let id: string = req.params.id as string; 
+    const request: ImpoundUpdateRequest = {
+        plateNumber: req.body.plateNumber,
+        vehicleType: req.body.vehicleType,
+        color: req.body.color,
+        daysInLot: req.body.daysInLot,
+        realeaseFee: req.body.realeaseFee
+    };
+
+    await updateImpoundById(id, request);
+    let results = await getImpoundByIdAsync(id)
+
+    res.status(HTTP_STATUS.OK).json(successResponse(results, `Impound application updated`));
+}
+
+export const deleteImpoundByIdAsync = async (req: Request, res: Response) => {
+    let id = req.params.id as string;
+    await deleteImpoundById(id)
+
+    res.status(HTTP_STATUS.NO_CONTENT).send(`Impound ${id} was deleted`);
+}
