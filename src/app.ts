@@ -1,5 +1,5 @@
 import express, {Express} from "express";
-// import impoundRouter from "./api/v1/routes/impoundRoutes";
+import impoundRouter from "./api/v1/routes/impoundRoutes";
 import morgan from "morgan";
 // import {
 //     accessLogger,
