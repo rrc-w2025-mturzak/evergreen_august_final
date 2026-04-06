@@ -26,3 +26,23 @@ export const createImpound = async (req: Request, res: Response) => {
     let result = await createNewImpound(requestImpound)
     res.status(HTTP_STATUS.CREATED).send(result)
 }
+
+export const getImpoundById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        let id = req.params.id as string;
+        let results = await getImpoundByIdAsync(id)
+
+        res.status(HTTP_STATUS.OK).json(successResponse(results, "Impound retrieved"))
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const getAllImpound = async (req: Request, res: Response) => {
+    try {
+        const Impounds = await getAllImpounds() ?? [];
+        res.status(HTTP_STATUS.OK).json({ message: "Impound applications retrieved", count: Impounds.length, data: Impounds });
+    } catch (error) {
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: "Internal Server Error"})
+    }
+}
