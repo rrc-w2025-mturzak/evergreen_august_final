@@ -42,3 +42,25 @@ export const getImpoundById = async (id: string): Promise<ImpoundDTO | undefined
         console.log("No such Impound!");
     }
 };
+
+export const getImpounds = async (): Promise<Array<ImpoundDTO> | undefined> => {
+
+    const snapshot: QuerySnapshot = await db.collection("Impounds").get();
+
+    const Impounds: ImpoundDTO[] = []
+    snapshot.forEach((doc) => {
+        let data = doc.data();
+        Impounds.push({
+            id: doc.id,
+            plateNumber: data!.plateNumber,
+            vehicleType: data!.vehicleType,
+            color: data!.color,
+            daysInLot: data!.daysInLot,
+            realeaseFee: data!.releaseFee,
+            createdAt: data!.createdAt?.toDate().toISOString()
+        });
+    });
+
+    return Impounds;
+};
+
