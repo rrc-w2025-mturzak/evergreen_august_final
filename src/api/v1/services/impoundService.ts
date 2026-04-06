@@ -23,3 +23,16 @@ export const getImpoundByIdAsync = async (id: string): Promise<ImpoundReponse> =
         releaseFee: entity. realeaseFee
     };
 }
+
+export const getAllImpounds = async (): Promise<Array<ImpoundDTO> | undefined> => {
+    return await getImpounds();
+}
+
+export const updateImpoundById = async (id: string, item: ImpoundUpdateRequest): Promise<void> => {
+    await updateImpounds(id, item);
+    return;
+}
+
+export const deleteImpoundById = async (id: string): Promise<void> => {
+    await deleteImpound(id)
+}
