@@ -20,7 +20,7 @@ export const getImpoundByIdAsync = async (id: string): Promise<ImpoundReponse> =
         id: entity.id,
         plateNumber: entity.plateNumber,
         daysInLot: entity.daysInLot,
-        releaseFee: entity. realeaseFee
+        releaseFee: entity. releaseFee
     };
 }
 

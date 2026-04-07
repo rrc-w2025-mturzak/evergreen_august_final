@@ -14,7 +14,7 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
-        "express": "^5.1.0",
+        "express": "^5.2.1",
         "firebase-admin": "^13.6.1",
         "joi": "^18.0.2",
         "morgan": "^1.10.1"
@@ -23,7 +23,7 @@
         "@types/express": "^5.0.6",
         "@types/jest": "^29.5.14",
         "@types/morgan": "^1.9.10",
-        "@types/node": "^22.19.8",
+        "@types/node": "^22.19.17",
         "jest": "^30.0.0",
         "ts-jest": "^29.2.5",
         "ts-node": "^10.9.2",

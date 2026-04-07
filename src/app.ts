@@ -7,7 +7,6 @@ import morgan from "morgan";
 //     consoleLogger,
 // } from "./api/v1/middleware/logger";
 // import errorHandler from "./api/v1/middleware/errorhandler";
-// import adminRouter from "./api/v1/routes/admin";
 
 const app: Express = express();
 

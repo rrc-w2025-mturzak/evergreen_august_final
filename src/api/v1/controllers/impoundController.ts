@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { HTTP_STATUS } from "../../../constants/httpConstants";
 import { successResponse } from "../models/responseModel";
-import { createNewImpound, getImpoundByIdAsync, getAllImpounds, updateImpoundById, deleteImpoundById } from "../services/ImpoundService";
+import { createNewImpound, getImpoundByIdAsync, getAllImpounds, updateImpoundById, deleteImpoundById } from "../services/impoundService";
 import { ImpoundCreateRequest } from "../models/impoundCreateRequestModel";
 import { ImpoundUpdateRequest } from "../models/impoundUpdateRequestModel";
 
@@ -21,7 +21,7 @@ export const createImpound = async (req: Request, res: Response) => {
         vehicleType: req.body.vehicleType,
         color: req.body.color,
         daysInLot: req.body.daysInLot,
-        realeaseFee: req.body.realeaseFee
+        releaseFee: req.body.releaseFee
     }
     let result = await createNewImpound(requestImpound)
     res.status(HTTP_STATUS.CREATED).send(result)
@@ -54,7 +54,7 @@ export const updateImpoundByIdAsync = async (req: Request, res: Response) => {
         vehicleType: req.body.vehicleType,
         color: req.body.color,
         daysInLot: req.body.daysInLot,
-        realeaseFee: req.body.realeaseFee
+        releaseFee: req.body.releaseFee
     };
 
     await updateImpoundById(id, request);

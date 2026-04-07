@@ -3,5 +3,5 @@ export interface ImpoundUpdateRequest {
     vehicleType?: string;
     color?: string;
     daysInLot?: number;
-    realeaseFee?: number;
+    releaseFee?: number;
 }

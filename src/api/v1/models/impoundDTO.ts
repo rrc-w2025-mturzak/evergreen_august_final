@@ -4,6 +4,6 @@ export interface ImpoundDTO {
     vehicleType: string;
     color: string;
     daysInLot: number;
-    realeaseFee: number;
+    releaseFee: number;
     createdAt: Date;
 }
