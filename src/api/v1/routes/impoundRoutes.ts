@@ -13,11 +13,11 @@ import { healthData,
 const impoundRouter: Router = express.Router();
 
 impoundRouter.get("/health", healthData);
-impoundRouter.get("/impounds", getAllImpound);
-impoundRouter.get("/impounds/:id", getImpoundById);
-impoundRouter.post("/impounds", createImpound);
-impoundRouter.put("/impounds/:id", updateImpoundByIdAsync);
-impoundRouter.delete("/impounds/:id", deleteImpoundByIdAsync);
+impoundRouter.get("/impound", getAllImpound);
+impoundRouter.get("/impound/:id", getImpoundById);
+impoundRouter.post("/impound", createImpound);
+impoundRouter.put("/impound/:id", updateImpoundByIdAsync);
+impoundRouter.delete("/impound/:id", deleteImpoundByIdAsync);
 
 export default impoundRouter;
 
