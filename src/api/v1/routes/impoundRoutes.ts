@@ -20,9 +20,3 @@ impoundRouter.put("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin"
 impoundRouter.delete("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin"], allowSameUser: true}), validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
 
 export default impoundRouter;
-
-// impoundRouter.get("/impounds", authenticate, isAuthorized({ hasRole: ["admin", "manager", "officer"], allowSameUser: true}), getAllImpound);
-// impoundRouter.get("/impounds/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager", "officer"], allowSameUser: true}), validateRequest(postSchemas.getById), getImpoundById);
-// impoundRouter.post("/impounds", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.create), createImpound);
-// impoundRouter.put("/impounds/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}),validateRequest(postSchemas.update), updateImpoundByIdAsync);
-// impoundRouter.delete("/impounds/:id", authenticate, isAuthorized({ hasRole: ["admin"], allowSameUser: true}),validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
