@@ -7,17 +7,17 @@ import { healthData,
         deleteImpoundByIdAsync } from "../controllers/impoundController";
 import { validateRequest } from "../middleware/validateRequest";
 import { postSchemas } from "../validation/impoundValidation";
-// import authenticate from "../middleware/authenticate";
+import authenticate from "../middleware/authenticate";
 // import isAuthorized from "../middleware/authorize";
 
 const impoundRouter: Router = express.Router();
 
 impoundRouter.get("/health", healthData);
-impoundRouter.get("/impound", getAllImpound);
-impoundRouter.get("/impound/:id", validateRequest(postSchemas.getById), getImpoundById);
-impoundRouter.post("/impound", validateRequest(postSchemas.create), createImpound);
-impoundRouter.put("/impound/:id", validateRequest(postSchemas.update), updateImpoundByIdAsync);
-impoundRouter.delete("/impound/:id", validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
+impoundRouter.get("/impound", authenticate, getAllImpound);
+impoundRouter.get("/impound/:id", authenticate, validateRequest(postSchemas.getById), getImpoundById);
+impoundRouter.post("/impound", authenticate, validateRequest(postSchemas.create), createImpound);
+impoundRouter.put("/impound/:id", authenticate, validateRequest(postSchemas.update), updateImpoundByIdAsync);
+impoundRouter.delete("/impound/:id", authenticate, validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
 
 export default impoundRouter;
 
