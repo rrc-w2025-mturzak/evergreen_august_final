@@ -5,8 +5,8 @@ import { healthData,
         getAllImpound, 
         updateImpoundByIdAsync, 
         deleteImpoundByIdAsync } from "../controllers/impoundController";
-// import { validateRequest } from "../middleware/validateRequest";
-// import { postSchemas } from "../validation/impoundValidation";
+import { validateRequest } from "../middleware/validateRequest";
+import { postSchemas } from "../validation/impoundValidation";
 // import authenticate from "../middleware/authenticate";
 // import isAuthorized from "../middleware/authorize";
 
@@ -14,7 +14,7 @@ const impoundRouter: Router = express.Router();
 
 impoundRouter.get("/health", healthData);
 impoundRouter.get("/impound", getAllImpound);
-impoundRouter.get("/impound/:id", getImpoundById);
+impoundRouter.get("/impound/:id", validateRequest(postSchemas.getById), getImpoundById);
 impoundRouter.post("/impound", createImpound);
 impoundRouter.put("/impound/:id", updateImpoundByIdAsync);
 impoundRouter.delete("/impound/:id", deleteImpoundByIdAsync);
