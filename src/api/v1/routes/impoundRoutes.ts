@@ -16,8 +16,8 @@ impoundRouter.get("/health", healthData);
 impoundRouter.get("/impound", getAllImpound);
 impoundRouter.get("/impound/:id", validateRequest(postSchemas.getById), getImpoundById);
 impoundRouter.post("/impound", validateRequest(postSchemas.create), createImpound);
-impoundRouter.put("/impound/:id",validateRequest(postSchemas.update), updateImpoundByIdAsync);
-impoundRouter.delete("/impound/:id", deleteImpoundByIdAsync);
+impoundRouter.put("/impound/:id", validateRequest(postSchemas.update), updateImpoundByIdAsync);
+impoundRouter.delete("/impound/:id", validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
 
 export default impoundRouter;
 
