@@ -31,4 +31,17 @@ export const postSchemas = {
             }),
         }).unknown(false),
     },
+
+    // GET /impound/:id - Get single post
+    getById: {
+        params: Joi.object({
+            id: Joi.string().required().messages({
+                "any.required": "Impound ID is required",
+                "string.empty": "Impound ID cannot be empty",
+            }),
+        }),
+        query: Joi.object({
+            include: Joi.string().valid("comments", "author").optional(),
+        }),
+    },
 };
