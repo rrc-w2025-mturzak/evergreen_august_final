@@ -16,7 +16,7 @@ impoundRouter.get("/health", healthData);
 impoundRouter.get("/impound", authenticate, isAuthorized({ hasRole: ["admin", "manager", "staff"], allowSameUser: true}), getAllImpound);
 impoundRouter.get("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager", "staff"], allowSameUser: true}), validateRequest(postSchemas.getById), getImpoundById);
 impoundRouter.post("/impound", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.create), createImpound);
-impoundRouter.put("/impound/:id", authenticate, validateRequest(postSchemas.update), updateImpoundByIdAsync);
+impoundRouter.put("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.update), updateImpoundByIdAsync);
 impoundRouter.delete("/impound/:id", authenticate, validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
 
 export default impoundRouter;
