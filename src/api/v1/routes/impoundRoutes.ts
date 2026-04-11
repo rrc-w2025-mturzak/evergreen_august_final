@@ -15,7 +15,7 @@ const impoundRouter: Router = express.Router();
 impoundRouter.get("/health", healthData);
 impoundRouter.get("/impound", getAllImpound);
 impoundRouter.get("/impound/:id", validateRequest(postSchemas.getById), getImpoundById);
-impoundRouter.post("/impound", createImpound);
+impoundRouter.post("/impound", validateRequest(postSchemas.create), createImpound);
 impoundRouter.put("/impound/:id", updateImpoundByIdAsync);
 impoundRouter.delete("/impound/:id", deleteImpoundByIdAsync);
 
