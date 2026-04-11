@@ -8,12 +8,12 @@ import { healthData,
 import { validateRequest } from "../middleware/validateRequest";
 import { postSchemas } from "../validation/impoundValidation";
 import authenticate from "../middleware/authenticate";
-// import isAuthorized from "../middleware/authorize";
+import isAuthorized from "../middleware/authorize";
 
 const impoundRouter: Router = express.Router();
 
 impoundRouter.get("/health", healthData);
-impoundRouter.get("/impound", authenticate, getAllImpound);
+impoundRouter.get("/impound", authenticate, isAuthorized({ hasRole: ["admin", "manager", "staff"], allowSameUser: true}), getAllImpound);
 impoundRouter.get("/impound/:id", authenticate, validateRequest(postSchemas.getById), getImpoundById);
 impoundRouter.post("/impound", authenticate, validateRequest(postSchemas.create), createImpound);
 impoundRouter.put("/impound/:id", authenticate, validateRequest(postSchemas.update), updateImpoundByIdAsync);
