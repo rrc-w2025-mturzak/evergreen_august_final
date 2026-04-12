@@ -8,6 +8,7 @@ import {
     consoleLogger,
 } from "./api/v1/middleware/logger";
 import errorHandler from "./api/v1/middleware/errorhandler";
+import { limiter } from "./api/v1/config/rateLimitConfig";
 
 const app: Express = express();
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(express.json());
+app.use(limiter)
 app.use(morgan("combined"));
 app.use("/api/v1/", impoundRouter);
 app.use("/api/v1/", adminRouter);
