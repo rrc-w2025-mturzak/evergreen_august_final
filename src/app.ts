@@ -5,6 +5,8 @@ import impoundRouter from "./api/v1/routes/impoundRoutes";
 import adminRouter from "./api/v1/routes/admin";
 import morgan from "morgan";
 import { getHelmetConfig } from "./api/v1/config/helmetConfig";
+import cors from "cors";
+import { getCorsOptions } from "./api/v1/config/corsConfig";
 import {
     accessLogger,
     errorLogger,
@@ -16,6 +18,7 @@ import setupSwagger from "./api/v1/config/swagger";
 
 const app: Express = express();
 app.use(getHelmetConfig());
+app.use(cors(getCorsOptions()));
 
 if (process.env.NODE_ENV === "production") {
     // In production, log to files
