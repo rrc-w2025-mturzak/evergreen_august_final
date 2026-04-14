@@ -74,6 +74,76 @@ impoundRouter.get("/health", healthData);
  *                         example: 2026-04-11T19:15:31.000Z
  */
 impoundRouter.get("/impound", authenticate, isAuthorized({ hasRole: ["admin", "manager", "staff"], allowSameUser: true}), getAllImpound);
+/**
+ * @openapi
+ * /impound/{id}:
+ *   get:
+ *     summary: Retrieve a single impound record by ID
+ *     tags:
+ *       - Impound
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Impound record ID
+ *       - name: include
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: string
+ *           enum: [comments, author]
+ *     responses:
+ *       200:
+ *         description: Impound record retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Impound record retrieved
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: imp_000001
+ *                     plateNumber:
+ *                       type: string
+ *                       example: ABC346
+ *                     vehicleType:
+ *                       type: string
+ *                       enum:
+ *                         - car
+ *                         - truck
+ *                         - van
+ *                         - bus
+ *                         - suv
+ *                         - motorcycle
+ *                       example: truck
+ *                     color:
+ *                       type: string
+ *                       example: blue
+ *                     daysInLot:
+ *                       type: integer
+ *                       example: 3
+ *                     releaseFee:
+ *                       type: number
+ *                       example: 70
+ *                     createdAt:
+ *                       type: string
+ *                       example: 2026-04-11T19:15:31.000Z
+ *                     updatedAt:
+ *                       type: string
+ *                       example: 2026-04-11T19:15:31.000Z
+ *       404:
+ *         description: Impound record not found
+ */
 impoundRouter.get("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager", "staff"], allowSameUser: true}), validateRequest(postSchemas.getById), getImpoundById);
 impoundRouter.post("/impound", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.create), createImpound);
 impoundRouter.put("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.update), updateImpoundByIdAsync);
