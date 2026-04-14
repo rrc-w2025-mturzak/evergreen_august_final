@@ -12,6 +12,24 @@ import isAuthorized from "../middleware/authorize";
 
 const impoundRouter: Router = express.Router();
 
+/**
+ * @openapi
+ * /health:
+ *   get:
+ *     summary: Health check endpoint
+ *     tags: [Events]
+ *     responses:
+ *       200:
+ *         description: API is running
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "ok"
+ */
 impoundRouter.get("/health", healthData);
 /**
  * @openapi
