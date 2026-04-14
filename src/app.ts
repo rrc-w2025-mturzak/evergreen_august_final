@@ -4,6 +4,7 @@ dotenv.config();
 import impoundRouter from "./api/v1/routes/impoundRoutes";
 import adminRouter from "./api/v1/routes/admin";
 import morgan from "morgan";
+import { getHelmetConfig } from "./api/v1/config/helmetConfig";
 import {
     accessLogger,
     errorLogger,
@@ -14,6 +15,7 @@ import { limiter } from "./api/v1/config/rateLimitConfig";
 import setupSwagger from "./api/v1/config/swagger";
 
 const app: Express = express();
+app.use(getHelmetConfig());
 
 if (process.env.NODE_ENV === "production") {
     // In production, log to files
