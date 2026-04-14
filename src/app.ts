@@ -1,4 +1,6 @@
 import express, {Express} from "express";
+import dotenv from "dotenv";
+dotenv.config();
 import impoundRouter from "./api/v1/routes/impoundRoutes";
 import adminRouter from "./api/v1/routes/admin";
 import morgan from "morgan";
