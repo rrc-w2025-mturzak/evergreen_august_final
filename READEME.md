@@ -39,7 +39,7 @@ This API is designed for:
 Clone the repository:
 
 ```
-git clone <your-repo-url-here>
+git clone https://github.com/rrc-w2025-mturzak/evergreen_august_final
 ```
 
 ### Prerequisites
@@ -72,6 +72,13 @@ Swagger UI (auto‑generated from your JSDoc):
 
 ```
 http://localhost:3000/api-docs
+```
+
+---
+
+### RedDoc Documentation
+```
+https://rrc-w2025-mturzak.github.io/evergreen_august_final/
 ```
 
 ---
