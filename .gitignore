@@ -4,3 +4,4 @@ productKey.json
 # Logs
 logs/
 *.log
+.env
