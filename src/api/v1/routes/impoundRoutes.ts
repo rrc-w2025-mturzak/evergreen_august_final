@@ -298,6 +298,28 @@ impoundRouter.post("/impound", authenticate, isAuthorized({ hasRole: ["admin", "
  *         description: Impound record not found
  */
 impoundRouter.put("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.update), updateImpoundByIdAsync);
+/**
+ * @openapi
+ * /impound/{id}:
+ *   delete:
+ *     summary: Delete an impound record
+ *     tags:
+ *       - Impound
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Impound record ID
+ *     responses:
+ *       204:
+ *         description: Impound record deleted successfully
+ *       404:
+ *         description: Impound record not found
+ */
 impoundRouter.delete("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin"], allowSameUser: true}), validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
 
 export default impoundRouter;
