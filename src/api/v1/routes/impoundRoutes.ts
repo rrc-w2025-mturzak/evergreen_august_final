@@ -145,6 +145,69 @@ impoundRouter.get("/impound", authenticate, isAuthorized({ hasRole: ["admin", "m
  *         description: Impound record not found
  */
 impoundRouter.get("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager", "staff"], allowSameUser: true}), validateRequest(postSchemas.getById), getImpoundById);
+/**
+ * @openapi
+ * /impound:
+ *   post:
+ *     summary: Create a new impound record
+ *     tags:
+ *       - Impound
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - plateNumber
+ *               - vehicleType
+ *               - color
+ *               - daysInLot
+ *               - releaseFee
+ *             properties:
+ *               plateNumber:
+ *                 type: string
+ *                 pattern: "^[A-Za-z0-9\\-]{2,10}$"
+ *                 example: ABC346
+ *               vehicleType:
+ *                 type: string
+ *                 enum:
+ *                   - car
+ *                   - truck
+ *                   - van
+ *                   - bus
+ *                   - suv
+ *                   - motorcycle
+ *                 example: truck
+ *               color:
+ *                 type: string
+ *                 example: blue
+ *               daysInLot:
+ *                 type: integer
+ *                 minimum: 0
+ *                 example: 3
+ *               releaseFee:
+ *                 type: number
+ *                 minimum: 0
+ *                 example: 70
+ *     responses:
+ *       201:
+ *         description: Impound record created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Impound record created
+ *                 data:
+ *                   $ref: "#/components/schemas/Impound"
+ *       400:
+ *         description: Validation error
+ */
 impoundRouter.post("/impound", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.create), createImpound);
 impoundRouter.put("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true}), validateRequest(postSchemas.update), updateImpoundByIdAsync);
 impoundRouter.delete("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin"], allowSameUser: true}), validateRequest(postSchemas.delete), deleteImpoundByIdAsync);
