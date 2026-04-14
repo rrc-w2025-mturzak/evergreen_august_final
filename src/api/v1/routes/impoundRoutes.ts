@@ -222,7 +222,36 @@ impoundRouter.get("/impound/:id", authenticate, isAuthorized({ hasRole: ["admin"
  *                   type: string
  *                   example: Impound record created
  *                 data:
- *                   $ref: "#/components/schemas/Impound"
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: imp_000001
+ *                     plateNumber:
+ *                       type: string
+ *                       example: ABC346
+ *                     vehicleType:
+ *                       type: string
+ *                       enum:
+ *                         - car
+ *                         - truck
+ *                         - van
+ *                         - bus
+ *                         - suv
+ *                         - motorcycle
+ *                       example: truck
+ *                     color:
+ *                       type: string
+ *                       example: blue
+ *                     daysInLot:
+ *                       type: integer
+ *                       example: 3
+ *                     releaseFee:
+ *                       type: number
+ *                       example: 70
+ *                     createdAt:
+ *                       type: string
+ *                       example: 2026-04-11T19:15:31.000Z
  *       400:
  *         description: Validation error
  */
@@ -293,7 +322,39 @@ impoundRouter.post("/impound", authenticate, isAuthorized({ hasRole: ["admin", "
  *                   type: string
  *                   example: Impound record updated
  *                 data:
- *                   $ref: "#/components/schemas/Impound"
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: imp_000001
+ *                     plateNumber:
+ *                       type: string
+ *                       example: ABC346
+ *                     vehicleType:
+ *                       type: string
+ *                       enum:
+ *                         - car
+ *                         - truck
+ *                         - van
+ *                         - bus
+ *                         - suv
+ *                         - motorcycle
+ *                       example: truck
+ *                     color:
+ *                       type: string
+ *                       example: blue
+ *                     daysInLot:
+ *                       type: integer
+ *                       example: 3
+ *                     releaseFee:
+ *                       type: number
+ *                       example: 70
+ *                     createdAt:
+ *                       type: string
+ *                       example: 2026-04-11T19:15:31.000Z
+ *                     updatedAt:
+ *                       type: string
+ *                       example: 2026-04-11T19:15:31.000Z
  *       404:
  *         description: Impound record not found
  */
