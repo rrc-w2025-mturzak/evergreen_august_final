@@ -32,7 +32,7 @@ export const getImpoundById = async (req: Request, res: Response, next: NextFunc
         let id = req.params.id as string;
         let results = await getImpoundByIdAsync(id)
 
-        res.status(HTTP_STATUS.OK).json(successResponse(results, "Impound retrieved"))
+        res.status(HTTP_STATUS.OK).json(successResponse(results, "Vehicle retrieved"))
     } catch (error) {
         next(error);
     }
@@ -41,7 +41,7 @@ export const getImpoundById = async (req: Request, res: Response, next: NextFunc
 export const getAllImpound = async (req: Request, res: Response) => {
     try {
         const Impounds = await getAllImpounds() ?? [];
-        res.status(HTTP_STATUS.OK).json({ message: "Impound applications retrieved", count: Impounds.length, data: Impounds });
+        res.status(HTTP_STATUS.OK).json({ message: "Impound data retrieved", count: Impounds.length, data: Impounds });
     } catch (error) {
         res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: "Internal Server Error"})
     }
@@ -60,12 +60,12 @@ export const updateImpoundByIdAsync = async (req: Request, res: Response) => {
     await updateImpoundById(id, request);
     let results = await getImpoundByIdAsync(id)
 
-    res.status(HTTP_STATUS.OK).json(successResponse(results, `Impound application updated`));
+    res.status(HTTP_STATUS.OK).json(successResponse(results, `Impound vehicle updated`));
 }
 
 export const deleteImpoundByIdAsync = async (req: Request, res: Response) => {
     let id = req.params.id as string;
     await deleteImpoundById(id)
 
-    res.status(HTTP_STATUS.NO_CONTENT).send(`Impound ${id} was deleted`);
+    res.status(HTTP_STATUS.NO_CONTENT).send(`Vehicle ${id} was deleted`);
 }
